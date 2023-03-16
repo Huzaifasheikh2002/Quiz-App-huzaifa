@@ -11,6 +11,7 @@ var quizQuestions = [
       answer: "Hyper text markup Language",
     },
     {
+      
       num: 2,
       question: "Which type of JavaScript Languages is",
       Option: {
@@ -77,65 +78,70 @@ var quizQuestions = [
       answer: "HTML, Head, Title, Body",
     },
   ];
-  
-  var htmlQuestion = document.getElementById("htmlQuestion");
-  var htmlOptionLists = document.getElementsByClassName("htmlOptionList");
-  // console.log(quizQuestions[0].question);
-  // console.log(htmlOptionLists);
-  var nextQuesBtn = document.getElementById("nextQuesBtn");
-  var counterValue = document.getElementById("counterValue");
-  var quizBox = document.getElementById("quizBox");
-  var counter = 0;
-  var score = 0;
-  var resultValue = document.getElementById("resultValue");
-  
-  function setQuestion() {
-    htmlQuestion.innerHTML = quizQuestions[counter].question;
-    htmlOptionLists[0].innerHTML = quizQuestions[counter].Option.a;
-    htmlOptionLists[1].innerHTML = quizQuestions[counter].Option.b;
-    htmlOptionLists[2].innerHTML = quizQuestions[counter].Option.c;
-    htmlOptionLists[3].innerHTML = quizQuestions[counter].Option.d;
+
+var HtmlQues = document.getElementById("HtmlQues") 
+var htmlOptions = document.getElementsByClassName("htmlOption")
+var nextQuestions = document.getElementById("nextQuestion")
+var counterValue = document.getElementById("counterValue")
+var quizBox = document.getElementById("quizBox")
+// console.log(quizQuestions[0].question);
+// console.log(htmlOptions);
+
+var counter = 0
+var score = 0
+var result = document.getElementById("result")
+
+function setQuestion() {
+  HtmlQues.innerHTML = quizQuestions[counter].question;
+  htmlOptions[0].innerHTML = quizQuestions[counter].Option.a;
+  htmlOptions[1].innerHTML = quizQuestions[counter].Option.b;
+  htmlOptions[2].innerHTML = quizQuestions[counter].Option.c;
+  htmlOptions[3].innerHTML = quizQuestions[counter].Option.d;
+}   
+function nextQue(){
+counter++;
+console.log(counter);
+if(counter < quizQuestions.length){
+  setQuestion();
+counterValue.innerHTML = `${counter + 1} / ${quizQuestions.length}`;
+}else{
+  console.log("End");
+  quizBox.style.display ="none";
+  result.className = "show";  
+  result.innerHTML = score;
+}
+nextQuestions.className="hide"
+// counterValue.innerHTML = counter + 1 `/ ${quizQuestions.length}`
+for (var i = 0;i < htmlOptions.length; i++){
+  htmlOptions[i].classList.remove("disabled")
+  htmlOptions[i].style.backgroundColor = "#f0f8ff51"
   }
+}
+
+
+
+function checkAns(e) {
+  nextQuestions.className="show"
+console.log(e.innerHTML==quizQuestions[counter].answer);
+if(e.innerHTML== quizQuestions[counter].answer){ 
+  score +=  10
+  console.log(score);
+  e.style.backgroundColor ="#AFE1AF"
+}else{
+  e.style.backgroundColor ="#F07B62"
+ 
   
-  function nextQes() {
-    counter++;
+for (var i = 0;i <htmlOptions.length;i++){
+if(htmlOptions[i].innerHTML == quizQuestions[counter].answer){
+  htmlOptions[i].style.backgroundColor ="#AFE1AF"
   
-    console.log(counter);
-    if (counter < quizQuestions.length) {
-      setQuestion();
-      counterValue.innerHTML = counter + 1 + " / " + quizQuestions.length;
-    } else {
-      console.log("hello");
-      quizBox.style.display = "none";
-      resultValue.className = "show";
-      resultValue.innerHTML = score;
-    }
-    //  if(counter< quizQuestions.length)
-    nextQuesBtn.className = "hide";
-  
-    for (var i = 0; i < htmlOptionLists.length; i++) {
-      htmlOptionLists[i].classList.remove("disabled");
-      htmlOptionLists[i].style.backgroundColor = "lightgrey";
-    }
-  }
-  function checkAns(e) {
-    //   console.log(e.innerHTML == quizQuestions[counter].answer);
-    nextQuesBtn.className = "show";
-    if (e.innerHTML == quizQuestions[counter].answer) {
-      score += 10;
-      console.log(score);
-      e.style.backgroundColor = "green";
-    } else {
-      e.style.backgroundColor = "red";
-  
-      for (var i = 0; i < htmlOptionLists.length; i++) {
-        if (htmlOptionLists[i].innerHTML == quizQuestions[counter].answer) {
-          htmlOptionLists[i].style.backgroundColor = "green";
-        }
-      }
-    }
-  
-    for (var i = 0; i < htmlOptionLists.length; i++) {
-      htmlOptionLists[i].className += " disabled";
-    }
-  }
+}
+}
+
+}
+
+for (var i = 0;i <htmlOptions.length;i++){
+  htmlOptions[i].className +=" disabled"
+}
+}
+
