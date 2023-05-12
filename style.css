@@ -69,7 +69,7 @@ body{
     /* padding: 8px; */
     border-radius: 10px;
     border: none;
-    width: 12%;
+    width: 150px;
     height:50px;
     font-size: 18px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 18px;
@@ -99,6 +99,6 @@ body{
       font-weight: bolder;
       font-size: larger;
   }
-  .resultClass h1{
-    font-size: 25px !important;
-  }
+  #result{
+    font-size:70px;
+    }
